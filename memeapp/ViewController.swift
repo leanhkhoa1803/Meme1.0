@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate,UITextFieldDelegate, UINavigationControllerDelegate {
+class MemeViewController: UIViewController, UIImagePickerControllerDelegate,UITextFieldDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
@@ -19,7 +19,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,UITextFi
         initTextField(topTextView,isTop: true)
         initTextField(bottomTextView,isTop: false)
     }
-    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        topTextView.layer.zPosition = 1
+        bottomTextView.layer.zPosition = 1
+        imagePickerView.layer.zPosition = 0
+    }
     func initTextField(_ textView: UITextField,isTop: Bool){
         textView.text = isTop ? "top".uppercased() : "bottom".uppercased()
         
@@ -27,7 +32,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,UITextFi
             NSAttributedString.Key.strokeColor: UIColor.white,
             NSAttributedString.Key.foregroundColor: UIColor.white,
             NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-            NSAttributedString.Key.strokeWidth:  -1.0,
+            NSAttributedString.Key.strokeWidth:  -3.5,
         ]
         textView.defaultTextAttributes = memeTextAttributes
         
@@ -40,24 +45,29 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,UITextFi
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+#if targetEnvironment(simulator)
+        cameraButton.isEnabled = false
+#else
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+#endif
         subscribeToKeyboardNotifications()
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         unsubscribeFromKeyboardNotifications()
     }
-    @IBAction func pickAnImage(_ sender: Any) {
+    func pickImage(sourceType: UIImagePickerController.SourceType) {
         let pickerController = UIImagePickerController()
         pickerController.delegate = self
-        pickerController.sourceType = .photoLibrary
+        pickerController.sourceType = sourceType
         present(pickerController, animated: true, completion: nil)
     }
     
     @IBAction func pickAnImageFromCamera(_ sender: Any) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        present(imagePicker, animated: true, completion: nil)
+        pickImage(sourceType: .camera)
+    }
+    @IBAction func pickAnImageFromAlbum(_ sender: Any) {
+        pickImage(sourceType: .photoLibrary)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -89,10 +99,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,UITextFi
         return true
     }
     @objc func keyboardWillShow(_ notification:Notification){
-        view.frame.origin.y -= getKeyboardHeight(notification)
+        view.frame.origin.y = -getKeyboardHeight(notification)
     }
     @objc func keyboardWillHide(_ notification:Notification){
-        view.frame.origin.y -= 0
+        view.frame.origin.y = 0
     }
     func getKeyboardHeight(_ notification:Notification) -> CGFloat {
         
@@ -114,24 +124,21 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,UITextFi
     }
     @IBAction func shareButtonTapped(_ sender: Any) {
         let memedImage = generateMemedImage()
-        // Create the meme
-        let meme = Meme(topText: topTextView.text!, bottomText: bottomTextView.text!, originalImage: imagePickerView.image!, memedImage: memedImage)
+        
         
         // Create an instance of UIActivityViewController
         let activityViewController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
-        
-        // Exclude some activities if needed
-        activityViewController.excludedActivityTypes = [UIActivity.ActivityType.addToReadingList, UIActivity.ActivityType.assignToContact]
-        
-        // Present the UIActivityViewController
-        if let popoverController = activityViewController.popoverPresentationController {
-            popoverController.barButtonItem = sender as! UIBarButtonItem
+        activityViewController.completionWithItemsHandler = {(activity, completed, items, error) in
+            if (completed){
+                self.save(memedImage: memedImage)
+                self.dismiss(animated: true,completion: nil)
+            }
         }
-        
-        present(activityViewController, animated: true, completion: nil)
+        self.present(activityViewController, animated: true, completion: nil)
     }
-    func save() {
-        
+    func save(memedImage: UIImage) {
+        // Create the meme
+        _ = Meme(topText: self.topTextView.text!, bottomText: self.bottomTextView.text!, originalImage: self.imagePickerView.image!, memedImage: memedImage)
     }
     func generateMemedImage() -> UIImage {
         
