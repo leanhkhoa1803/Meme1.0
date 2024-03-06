@@ -29,7 +29,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate,UITe
         textView.text = isTop ? "top".uppercased() : "bottom".uppercased()
         
         let memeTextAttributes: [NSAttributedString.Key: Any] = [
-            NSAttributedString.Key.strokeColor: UIColor.white,
+            NSAttributedString.Key.strokeColor: UIColor.black,
             NSAttributedString.Key.foregroundColor: UIColor.white,
             NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
             NSAttributedString.Key.strokeWidth:  -3.5,
@@ -99,7 +99,10 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate,UITe
         return true
     }
     @objc func keyboardWillShow(_ notification:Notification){
-        view.frame.origin.y = -getKeyboardHeight(notification)
+        if bottomTextView.isFirstResponder{
+            view.frame.origin.y = -getKeyboardHeight(notification)
+        }
+        
     }
     @objc func keyboardWillHide(_ notification:Notification){
         view.frame.origin.y = 0
