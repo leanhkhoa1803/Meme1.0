@@ -9,8 +9,23 @@ import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
+    var memes: [Meme] {
+            get {
+                if let array = UserDefaults.standard.data(forKey: "memes"),
+                   let decodedMemes = try? JSONDecoder().decode([Meme].self, from: array) {
+                    return decodedMemes
+                } else {
+                    return []
+                }
+            }
+            set {
+                if let encodedMemes = try? JSONEncoder().encode(newValue) {
+                    UserDefaults.standard.set(encodedMemes, forKey: "memes")
+                } else {
+                    print("Failed to encode memes array.")
+                }
+            }
+        }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
