@@ -258,14 +258,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DG3-mk-Gmn">
-                                <rect key="frame" x="136.66666666666666" y="376" width="119.99999999999997" height="100"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="120" id="ek3-Kj-2tU"/>
-                                    <constraint firstAttribute="height" constant="100" id="pXe-e3-WQK"/>
-                                </constraints>
+                                <rect key="frame" x="0.0" y="59" width="393" height="734"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ej-rV-E52">
-                                <rect key="frame" x="176" y="497" width="41.333333333333343" height="20.333333333333371"/>
+                                <rect key="frame" x="176" y="808" width="41.333333333333343" height="20.333333333333371"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -275,9 +271,13 @@
                         <color key="backgroundColor" red="0.35774403994845361" green="0.35774403994845361" blue="0.35774403994845361" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="8ej-rV-E52" firstAttribute="centerX" secondItem="m4n-8G-rVJ" secondAttribute="centerX" id="67B-SM-4s5"/>
+                            <constraint firstItem="DG3-mk-Gmn" firstAttribute="leading" secondItem="m4n-8G-rVJ" secondAttribute="leading" id="8ex-Tt-VQ3"/>
                             <constraint firstItem="DG3-mk-Gmn" firstAttribute="centerY" secondItem="jA8-1Z-btj" secondAttribute="centerY" id="ANh-rf-LTw"/>
-                            <constraint firstItem="8ej-rV-E52" firstAttribute="top" secondItem="DG3-mk-Gmn" secondAttribute="bottom" constant="21" id="ICT-PD-fAZ"/>
+                            <constraint firstItem="m4n-8G-rVJ" firstAttribute="trailing" secondItem="DG3-mk-Gmn" secondAttribute="trailing" id="CEK-vP-2ku"/>
+                            <constraint firstItem="8ej-rV-E52" firstAttribute="top" secondItem="DG3-mk-Gmn" secondAttribute="bottom" constant="15" id="ICT-PD-fAZ"/>
                             <constraint firstItem="DG3-mk-Gmn" firstAttribute="centerX" secondItem="jA8-1Z-btj" secondAttribute="centerX" id="bBy-zP-8id"/>
+                            <constraint firstItem="DG3-mk-Gmn" firstAttribute="top" secondItem="m4n-8G-rVJ" secondAttribute="top" id="k36-ip-kYf"/>
+                            <constraint firstItem="DG3-mk-Gmn" firstAttribute="centerX" secondItem="m4n-8G-rVJ" secondAttribute="centerX" id="yVr-4B-5iU"/>
                         </constraints>
                     </view>
                     <connections>
