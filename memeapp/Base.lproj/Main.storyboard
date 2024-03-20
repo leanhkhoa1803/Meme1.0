@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Table View Controller-->
         <scene sceneID="AKK-Yk-wJe">
             <objects>
-                <viewController id="OJM-PC-SX1" customClass="ViewController" customModule="memeapp" sceneMemberID="viewController">
+                <viewController id="OJM-PC-SX1" customClass="TableViewController" customModule="memeapp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9hY-fo-dXm">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -162,10 +162,10 @@
             </objects>
             <point key="canvasLocation" x="-938" y="-308"/>
         </scene>
-        <!--Villain Collection View Controller-->
+        <!--Collection View Controller-->
         <scene sceneID="IE4-4W-Q5z">
             <objects>
-                <viewController id="tZS-sZ-svU" customClass="VillainCollectionViewController" customModule="memeapp" sceneMemberID="viewController">
+                <viewController id="tZS-sZ-svU" customClass="CollectionViewController" customModule="memeapp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="m4h-lu-aMF">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -174,21 +174,21 @@
                                 <rect key="frame" x="0.0" y="103" width="393" height="749"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="OEq-dc-aNF">
-                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="itemSize" width="104" height="110"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="VillainCollectionViewCell" id="Arn-Wr-UGL" customClass="VillainCollectionViewCell" customModule="memeapp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionViewCell" id="Arn-Wr-UGL" customClass="CollectionViewCell" customModule="memeapp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="104" height="110"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="1Sx-VP-Wd0">
-                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="104" height="110"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="X6Z-RJ-Wex">
-                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                                    <rect key="frame" x="0.0" y="10" width="104" height="100"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="100" id="8zs-Bx-0eQ"/>
                                                         <constraint firstAttribute="width" constant="100" id="d9i-57-2wN"/>
@@ -196,12 +196,14 @@
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="X6Z-RJ-Wex" firstAttribute="top" secondItem="1Sx-VP-Wd0" secondAttribute="top" id="5mQ-zO-IBb"/>
-                                                <constraint firstItem="X6Z-RJ-Wex" firstAttribute="leading" secondItem="1Sx-VP-Wd0" secondAttribute="leading" id="KCg-dm-TJ5"/>
-                                                <constraint firstAttribute="bottom" secondItem="X6Z-RJ-Wex" secondAttribute="bottom" id="LfT-cO-3Hb"/>
-                                                <constraint firstAttribute="trailing" secondItem="X6Z-RJ-Wex" secondAttribute="trailing" id="hfq-E4-FS0"/>
+                                                <constraint firstItem="X6Z-RJ-Wex" firstAttribute="leading" secondItem="1Sx-VP-Wd0" secondAttribute="leading" id="AUh-fc-d70"/>
+                                                <constraint firstItem="X6Z-RJ-Wex" firstAttribute="top" secondItem="1Sx-VP-Wd0" secondAttribute="top" constant="10" id="PnD-kx-kA3"/>
+                                                <constraint firstAttribute="trailing" secondItem="X6Z-RJ-Wex" secondAttribute="trailing" id="dxB-CE-xCk"/>
+                                                <constraint firstAttribute="bottom" secondItem="X6Z-RJ-Wex" secondAttribute="bottom" id="tJq-Qz-2Cu"/>
+                                                <constraint firstItem="X6Z-RJ-Wex" firstAttribute="leading" secondItem="1Sx-VP-Wd0" secondAttribute="leading" id="vIa-2v-Sm5"/>
                                             </constraints>
                                         </collectionViewCellContentView>
+                                        <size key="customSize" width="104" height="110"/>
                                         <connections>
                                             <outlet property="villainImageView" destination="X6Z-RJ-Wex" id="fiy-yO-0Gy"/>
                                         </connections>
@@ -245,7 +247,47 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eDG-Mt-qDY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-146" y="-308"/>
+            <point key="canvasLocation" x="-147.32824427480915" y="-308.45070422535213"/>
+        </scene>
+        <!--Meme Details-->
+        <scene sceneID="8hg-vG-Ojo">
+            <objects>
+                <viewController storyboardIdentifier="MemeDetailViewController" title="Meme Details" id="5cc-wi-Glv" customClass="MemeDetailViewController" customModule="memeapp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jA8-1Z-btj">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DG3-mk-Gmn">
+                                <rect key="frame" x="136.66666666666666" y="376" width="119.99999999999997" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="ek3-Kj-2tU"/>
+                                    <constraint firstAttribute="height" constant="100" id="pXe-e3-WQK"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ej-rV-E52">
+                                <rect key="frame" x="176" y="497" width="41.333333333333343" height="20.333333333333371"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="m4n-8G-rVJ"/>
+                        <color key="backgroundColor" red="0.35774403994845361" green="0.35774403994845361" blue="0.35774403994845361" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="8ej-rV-E52" firstAttribute="centerX" secondItem="m4n-8G-rVJ" secondAttribute="centerX" id="67B-SM-4s5"/>
+                            <constraint firstItem="DG3-mk-Gmn" firstAttribute="centerY" secondItem="jA8-1Z-btj" secondAttribute="centerY" id="ANh-rf-LTw"/>
+                            <constraint firstItem="8ej-rV-E52" firstAttribute="top" secondItem="DG3-mk-Gmn" secondAttribute="bottom" constant="21" id="ICT-PD-fAZ"/>
+                            <constraint firstItem="DG3-mk-Gmn" firstAttribute="centerX" secondItem="jA8-1Z-btj" secondAttribute="centerX" id="bBy-zP-8id"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="DG3-mk-Gmn" id="A6H-Kd-uYm"/>
+                        <outlet property="label" destination="8ej-rV-E52" id="8h6-Hf-aQM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hwh-1V-nEP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1521" y="-308"/>
         </scene>
         <!--Meme View Controller-->
         <scene sceneID="tne-QT-ifu">
